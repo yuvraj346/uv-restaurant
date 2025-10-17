@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant UV | Fine Dining Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #c9a96e;
+            --accent: #8b0000;
+            --light: #f8f8f8;
+            --dark: #121212;
+            --gray: #2a2a2a;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 14px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            background: #d4b87a;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(26, 26, 26, 0.95);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--light);
+            margin-left: 5px;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-menu a:hover:after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #ddd;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--light);
+            border: 2px solid var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--light);
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        /* Menu Section */
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tab-btn {
+            background: var(--gray);
+            color: var(--light);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .tab-btn.active {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: #3a3a3a;
+        }
+
+        .menu-category {
+            display: none;
+        }
+
+        .menu-category.active {
+            display: block;
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .menu-item {
+            background: var(--gray);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            height: 120px;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-item-img {
+            width: 120px;
+            background-color: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        .menu-item-content {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .menu-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--secondary);
+        }
+
+        .menu-item p {
+            color: #ccc;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .price {
+            font-weight: 600;
+            color: var(--light);
+            font-size: 1rem;
+        }
+
+        /* Chefs Section */
+        .chefs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .chef-card {
+            background: var(--gray);
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .chef-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .chef-img {
+            height: 300px;
+            background-color: #555;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chef-img:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+        }
+
+        .chef-info {
+            padding: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .chef-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .chef-info p {
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+
+        .chef-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .chef-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            border-radius: 50%;
+            transition: var(--transition);
+            color: var(--light);
+        }
+
+        .chef-social a:hover {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            padding: 70px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: var(--secondary);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+
+        .footer-column p, .footer-column a {
+            color: #ccc;
+            margin-bottom: 15px;
+            display: block;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--secondary);
+            width: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--gray);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--gray);
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #d4b87a;
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .menu-items {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                flex-direction: column;
+                background: var(--primary);
+                width: 80%;
+                height: calc(100vh - 80px);
+                transition: 0.5s;
+                padding-top: 50px;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-menu li {
+                margin: 20px 0;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 200px;
+                text-align: center;
+            }
+            
+            .menu-item {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .menu-item-img {
+                width: 100%;
+                height: 150px;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .menu-items, .chefs-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .menu-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab-btn {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-utensils"></i>Restaurant <span>UV</span>
+            </a>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#chefs">Chefs</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" class="btn">Reservations</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Culinary Excellence Awaits</h1>
+            <p>Experience the perfect harmony of traditional flavors and modern culinary artistry at Restaurant UV, where every dish tells a story.</p>
+            <div class="hero-btns">
+                <a href="#menu" class="btn">View Menu</a>
+                <a href="#contact" class="btn btn-secondary">Book a Table</a>
+            </div>
+        </div>
+        <a href="#menu" class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu">
+        <div class="container">
+            <h2>Our Menu</h2>
+            
+            <div class="menu-tabs">
+                <button class="tab-btn active" data-tab="starters">Starters</button>
+                <button class="tab-btn" data-tab="main-course">Main Course</button>
+                <button class="tab-btn" data-tab="desserts">Desserts</button>
+                <button class="tab-btn" data-tab="drinks">Drinks</button>
+            </div>
+            
+            <!-- Starters -->
+            <div class="menu-category active" id="starters">
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="chalu chaat.jpg" alt="Chalu Chaat" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Chalu Chaat</h4>
+                                <span class="price">₹180</span>
+                            </div>
+                            <p>A tantalizing mix of flavors to awaken your taste buds.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="hoti tikki.jpg" alt="Hoti Tikki" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Hoti Tikki</h4>
+                                <span class="price">₹160</span>
+                            </div>
+                            <p>Spiced potato patties with a crispy exterior and soft interior.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Soxy Manchao Soup.jpg" alt="Soxy Manchao Soup" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Soxy Manchao Soup</h4>
+                                <span class="price">₹140</span>
+                            </div>
+                            <p>A rich, flavorful soup with vegetables and traditional spices.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Hara Bhara Kamina Kabab.jpg" alt="Hara Bhara Kamina Kabab" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Hara Bhara Kamina Kabab</h4>
+                                <span class="price">₹200</span>
+                            </div>
+                            <p>Green vegetable kebabs with a delightful twist.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Avara Aloo.jpg" alt="Avara Aloo" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Avara Aloo</h4>
+                                <span class="price">₹150</span>
+                            </div>
+                            <p>Potatoes prepared with a unique blend of spices.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Sharmila Tamatar ki Sabji.jpg" alt="Sharmila Tamatar ki Sabji" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Sharmila Tamatar ki Sabji</h4>
+                                <span class="price">₹170</span>
+                            </div>
+                            <p>A delicate tomato-based vegetable dish.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Thik Fries.jpg" alt="Thik Fries" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Thik Fries</h4>
+                                <span class="price">₹120</span>
+                            </div>
+                            <p>Perfectly cut and seasoned fries.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Hard Fries.jpg" alt="Hard Fries" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Hard Fries</h4>
+                                <span class="price">₹130</span>
+                            </div>
+                            <p>Crispy, thick-cut potato fries.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Clean Shaved Potatoes.jpg" alt="Hard Fries" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Clean Shaved Potatoes</h4>
+                                <span class="price">₹110</span>
+                            </div>
+                            <p>Thinly sliced, perfectly fried potato chips.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Constipated Paneer Tikka.jpg" alt="Constipated Paneer Tikka" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Constipated Paneer Tikka 😭</h4>
+                                <span class="price">₹220</span>
+                            </div>
+                            <p>Paneer cubes marinated in special spices and grilled.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Hot Paneer Chilly.jpg" alt="Hot Paneer Chilly" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Hot Paneer Chilly</h4>
+                                <span class="price">₹230</span>
+                            </div>
+                            <p>Spicy paneer cubes with bell peppers and onions.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Mota Burger.jpg" alt="Mota Burger" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Mota Burger</h4>
+                                <span class="price">₹200</span>
+                            </div>
+                            <p>A hearty, thick burger with special sauce.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Chu Chu Chatni.jpg" alt="Chu Chu Chatni" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Chu Chu Chatni</h4>
+                                <span class="price">₹100</span>
+                            </div>
+                            <p>A selection of traditional chutneys.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Course -->
+            <div class="menu-category" id="main-course">
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Baiman Began.jpg" alt="Baiman Began" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Baiman Began</h4>
+                                <span class="price">₹260</span>
+                            </div>
+                            <p>Eggplant cooked with traditional spices.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Batamiz Matar.jpg" alt="Batamiz Matar" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Batamiz Matar</h4>
+                                <span class="price">₹240</span>
+                            </div>
+                            <p>Peas prepared with a unique blend of flavors.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Luchi Locki.jpg" alt="Luchi Locki" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Luchi Locki</h4>
+                                <span class="price">₹180</span>
+                            </div>
+                            <p>Traditional fried bread with special accompaniments.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Namak Haram Naan.jpg" alt="Namak Haram Naan" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Namak Haram Naan</h4>
+                                <span class="price">₹100</span>
+                            </div>
+                            <p>Leavened bread with a special twist.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Dagabaz Daal.jpg" alt="Dagabaz Daal" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Dagabaz Daal</h4>
+                                <span class="price">₹220</span>
+                            </div>
+                            <p>Lentils cooked with traditional tempering.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Lalchi Lacha Parathe.jpg" alt="Lalchi Lacha Parathe" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Lalchi Lacha Parathe</h4>
+                                <span class="price">₹160</span>
+                            </div>
+                            <p>Layered flatbread with ghee.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Luchha Rotla.jpg" alt="Luchha Rotla" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Luchha Rotla</h4>
+                                <span class="price">₹120</span>
+                            </div>
+                            <p>Traditional millet bread.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Lukha Rotla (special version ).jpg" alt="Lukha Rotla" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Lukha Rotla (special version 😏)</h4>
+                                <span class="price">₹140</span>
+                            </div>
+                            <p>Special millet bread with unique preparation.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Randvo Handvo.jpg" alt="Randvo Handvo" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Randvo Handvo</h4>
+                                <span class="price">₹200</span>
+                            </div>
+                            <p>Savory cake made from lentils and rice.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Nakhreli Undhiyu.jpg" alt="Nakhreli Undhiyu" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Nakhreli Undhiyu</h4>
+                                <span class="price">₹280</span>
+                            </div>
+                            <p>Mixed vegetable dish from Gujarat.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Bevda Buttermilk.jpg" alt="Bevda Buttermilk" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Bevda Buttermilk</h4>
+                                <span class="price">₹80</span>
+                            </div>
+                            <p>Spiced buttermilk to complement your meal.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Chataka Bataka nu Shaak.jpg" alt="Chataka Bataka nu Shaak" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Chataka Bataka nu Shaak</h4>
+                                <span class="price">₹220</span>
+                            </div>
+                            <p>Spicy potato curry with traditional flavors.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Sakth Kathod.jpg" alt="Sakth Kathod" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Sakth Kathod</h4>
+                                <span class="price">₹240</span>
+                            </div>
+                            <p>A hearty vegetable preparation.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Nakhre Daar Paneer.jpg" alt="Nakhre Daar Paneer" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Nakhre Daar Paneer</h4>
+                                <span class="price">₹300</span>
+                            </div>
+                            <p>Cottage cheese in a rich, flavorful gravy.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Rascal Roti.jpg" alt="Rascal Roti" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Rascal Roti</h4>
+                                <span class="price">₹90</span>
+                            </div>
+                            <p>Whole wheat bread with a rustic touch.</p>
+                        </div>
+                    </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img"><img src="kalki karela.jpg" alt="Kalki Karela" style="width:100%;height:100%;object-fit:cover;"></div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <h4>Kalki Karela</h4>
+                                    <span class="price">₹230</span>
+                                </div>
+                                <p>Bitter gourd prepared to perfection.</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img"><img src="besaram biryani.jpg" alt="Besaram Biryani" style="width:100%;height:100%;object-fit:cover;"></div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <h4>Besaram Biryani</h4>
+                                    <span class="price">₹320</span>
+                                </div>
+                                <p>Fragrant rice dish with vegetables and spices.</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img"><img src="benam palak.jpg" alt="Benam Palak" style="width:100%;height:100%;object-fit:cover;"></div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <h4>Benam Palak</h4>
+                                    <span class="price">₹250</span>
+                                </div>
+                                <p>Spinach curry with traditional tempering.</p>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            
+            <!-- Desserts -->
+            <div class="menu-category" id="desserts">
+                <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="menu-item-img"><img src="Bewafa Barfi.jpg" alt="Bewafa Barfi" style="width:100%;height:100%;object-fit:cover;"></div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <h4>Bewafa Barfi</h4>
+                                    <span class="price">₹140</span>
+                                </div>
+                                <p>Traditional milk-based sweet with a modern twist.</p>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-img"><img src="Lalchi Lassi.jpg" alt="Lalchi Lassi" style="width:100%;height:100%;object-fit:cover;"></div>
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <h4>Lalchi Lassi (dessert drink combo 😜)</h4>
+                                    <span class="price">₹120</span>
+                                </div>
+                                <p>Sweet yogurt drink with special toppings.</p>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            
+            <!-- Drinks -->
+            <div class="menu-category" id="drinks">
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="bb2.jpg" alt="Lalchi Lassi" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Bevda Buttermilk (yes, again — it deserves a double feature 😏)</h4>
+                                <span class="price">₹80</span>
+                            </div>
+                            <p>Spiced buttermilk, the perfect digestive.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="Smoochy Chaas.jpg" alt="Smoochy Chaas" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Smoochy Chaas</h4>
+                                <span class="price">₹70</span>
+                            </div>
+                            <p>Refreshing spiced buttermilk.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-img"><img src="l2.jpg" alt="Lalchi Lassi" style="width:100%;height:100%;object-fit:cover;"></div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4>Lalchi Lassi (because some people like their sweetness greedy 😉)</h4>
+                                <span class="price">₹120</span>
+                            </div>
+                            <p>Sweet and creamy yogurt drink.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chefs Section -->
+    <section id="chefs">
+        <div class="container">
+            <h2>Meet Our Master Chefs</h2>
+            <div class="chefs-container">
+                <div class="chef-card">
+                    <div class="chef-img"><img src="chumeshwari.png" alt="Lalchi Lassi" style="width:100%;height:100%;object-fit:cover;"></div>
+                    <div class="chef-info">
+                        <h3>Chef chumeshwari</h3>
+                        <p>Head Chef & Culinary Director with over 15 years of experience creating innovative dishes that blend traditional flavors with modern techniques.</p>
+                        <div class="chef-social">
+                            <a href="https://www.instagram.com/aunt.cass?igsh=MWs3cDg0bndjNHcydg=="><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="chef-card">
+                    <div class="chef-img"><img src="uv.jpg" alt="Lalchi Lassi" style="width:100%;height:100%;object-fit:cover;"></div>
+                    <div class="chef-info">
+                        <h3>Chef UV</h3>
+                        <p>Specializes in North Indian cuisine and has perfected the art of balancing spices to create unforgettable flavor profiles.</p>
+                        <div class="chef-social">
+                            <a href="https://www.instagram.com/jarvuy_2005?igsh=MTJ1MmJ5ODZweWhmNQ=="><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="chef-card">
+                    <div class="chef-img"><img src="mahiru3.jpg" alt="Lalchi Lassi" style="width:100%;height:100%;object-fit:cover;"></div>
+                    <div class="chef-info">
+                        <h3>Chef mahiru</h3>
+                        <p>Our pastry expert who creates delightful desserts that perfectly complement our savory dishes.</p>
+                        <div class="chef-social">
+                            <a href="https://www.instagram.com/tenshisama_official?igsh=MTNsZ3FtOWZ0Ymho"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Restaurant UV</h3>
+                    <p>Experience the perfect blend of traditional flavors and modern culinary techniques at our premium restaurant.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column footer-contact">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Gourmet Street, Food District</p>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-envelope"></i> info@restaurantuv.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Thu: 11:00 AM - 10:00 PM</p>
+                    <p><i class="fas fa-clock"></i> Fri-Sat: 11:00 AM - 11:00 PM</p>
+                    <p><i class="fas fa-clock"></i> Sun: 12:00 PM - 9:00 PM</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="#home">Home</a>
+                    <a href="#menu">Our Menu</a>
+                    <a href="#chefs">Our Chefs</a>
+                    <a href="#">Gallery</a>
+                    <a href="#">Events</a>
+                    <a href="#">Careers</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Restaurant UV. All rights reserved. | Designed with <i class="fas fa-heart" style="color: var(--accent);"></i> for fine dining</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.innerHTML = navMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Menu Tab Functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const menuCategories = document.querySelectorAll('.menu-category');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons and categories
+                tabBtns.forEach(b => b.classList.remove('active'));
+                menuCategories.forEach(cat => cat.classList.remove('active'));
+                
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                // Show corresponding category
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('active');
+            } else {
+                backToTopBtn.classList.remove('active');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.padding = '10px 0';
+                header.style.backgroundColor = 'rgba(26, 26, 26, 0.98)';
+            } else {
+                header.style.padding = '20px 0';
+                header.style.backgroundColor = 'rgba(26, 26, 26, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
